@@ -14,7 +14,7 @@
 - Clone the repository:
 
 ```bash
-git clone https://github.com/xcrud/xcrud-reload.git
+git clone https://github.com/xcrud/xcrud.git
 ```
 
 - Go to the xcrud-reload folder:
@@ -24,6 +24,6 @@ cd xcrud-reload
 
 Copyright
 ---------------------
-* (C) 2005 Open Source Matters, Inc. <https://www.joomla.org>
+* (C) 2005 Open Source Matters, Inc. <https://www.xcrud.me>
 * Distributed under the GNU General Public License version 2 or later
 ```
