@@ -14,7 +14,7 @@
 - Clone the repository:
 
 ```bash
-git clone https://github.com/xcrud/xcrud-reload.git
+git clone https://github.com/xcrud/xcrud.git
 ```
 
 - Go to the xcrud-reload folder:
