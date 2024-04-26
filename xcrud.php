@@ -7227,57 +7227,51 @@
      {
          $field = $this->_post('field');
          $oldfile = $this->_post('oldfile', 0);
-         if (isset($_FILES) && isset($_FILES['xcrud-attach']) && !$_FILES['xcrud-attach']['error'])
-         {
+
+         if (isset($_FILES) && isset($_FILES['xcrud-attach']) && !$_FILES['xcrud-attach']['error']) {
              $file = $_FILES['xcrud-attach'];
              $this->check_file_folders($field);
              $filename = $this->safe_file_name($file, $field);
              $filename = $this->get_filename_noconfict($filename, $field);
 
-             if ($this->before_upload)
-             {
+             if ($this->before_upload) {
                  $path = $this->check_file($this->before_upload['path'], 'before_upload');
-                 include_once ($path);
+                 include_once($path);
                  $callable = $this->before_upload['callable'];
-                 if (is_callable($callable))
-                 {
+                 if (is_callable($callable)) {
                      call_user_func_array($callable, array(
                          $field,
                          $filename,
                          $this->upload_config[$field],
-                         $this));
+                         $this
+                     ));
                  }
-                 if ($this->exception)
-                 {
+                 if ($this->exception) {
                      $out = $this->call_exception();
                      $this->after_render();
                      return $out;
                  }
              }
 
-             if ($oldfile != $filename)
+             if ($oldfile != $filename) {
                  $this->upload_to_remove[$oldfile] = $field;
+             }
              $this->upload_to_save[$filename] = $field;
-             if ($this->is_resize($field))
-             {
+
+             if ($this->is_resize($field)) {
                  $this->save_file_to_tmp($file, $filename, $field);
-                 if ($this->exception)
-                 {
+                 if ($this->exception) {
                      $out = $this->call_exception();
                      $this->after_render();
                      return $out;
                  }
-                 if ($this->is_manual_crop($field))
-                 {
+                 if ($this->is_manual_crop($field)) {
                      //$this->make_bg($filename, $field);
                      $out = $this->render_crop_window($filename, $field);
-                 }
-                 else
-                 {
+                 } else {
                      $this->make_autoresize($filename, $field);
                      $this->remove_tmp_image($filename, $field);
-                     if ($this->exception)
-                     {
+                     if ($this->exception) {
                          $out = $this->call_exception();
                          $this->after_render();
                          return $out;
@@ -7285,32 +7279,110 @@
                      //$this->render_image_field($filename, $field);
                      $out = $this->create_image($field, $filename, array(), true);
                  }
-             }
-             else
-             {
+             } else {
                  //$this->save_file($file, $filename, $field); //$this->render_image_field($filename, $field);
                  $this->save_file_to_tmp($file, $filename, $field);
-                 if ($this->exception)
-                 {
+                 if ($this->exception) {
                      $out = $this->call_exception();
                      $this->after_render();
                      return $out;
                  }
                  $this->filter_image($filename, $field);
                  $this->remove_tmp_image($filename, $field);
-                 if ($this->exception)
-                 {
+                 if ($this->exception) {
                      $out = $this->call_exception();
                      $this->after_render();
                      return $out;
                  }
+
+                 // Convert the image to WebP format if enabled
+                 if ($this->is_webp($field)) {
+                     $webpFilename = $filename . '.webp';
+                     $webpDestination = $this->upload_config[$field]['path'] . $webpFilename;
+
+                     $this->convert_to_webp($this->upload_config[$field]['path'] . $filename, $webpDestination,$field);
+
+                     $filename = $webpFilename;
+                 }
+
                  $out = $this->create_image($field, $filename, array(), true);
              }
+
              $this->after_render();
              return $out;
-         }
-         else
+         } else {
              return self::error('File is not uploaded');
+         }
+     }
+         protected function is_webp($field)
+         {
+
+             if (isset($this->upload_config[$field]['is_webp']) && $this->upload_config[$field]['is_webp'] == true)
+                 return true;
+             else
+                 return false;
+         }
+
+
+
+
+     protected function convert_to_webp($source_image, $destination_image, $quality = 95)
+     {
+         if (!file_exists($source_image)) {
+             error_log("Source image does not exist: $source_image");
+             return false;
+         }
+
+         $source_info = getimagesize($source_image);
+         if ($source_info === false) {
+             error_log("Failed to get image size: $source_image");
+             return false;
+         }
+
+         switch ($source_info['mime']) {
+             case 'image/jpeg':
+                 $image = imagecreatefromjpeg($source_image);
+                 break;
+             case 'image/png':
+                 $image = imagecreatefrompng($source_image);
+                 imagepalettetotruecolor($image);  // Convert to true color if not already
+                 imagealphablending($image, true); // Enable alpha blending
+                 imagesavealpha($image, true);     // Save alpha channel
+                 break;
+             case 'image/gif':
+                 $image = imagecreatefromgif($source_image);
+                 break;
+             case 'image/webp':
+                 // If the image is already a WebP, just copy it instead of re-encoding
+                 return copy($source_image, $destination_image);
+             case 'image/bmp':
+                 $image = imagecreatefrombmp($source_image);
+                 break;
+             default:
+                 error_log("Unsupported image type: {$source_info['mime']}");
+                 return false;
+         }
+
+         // Ensure the destination directory exists
+         $destination_dir = pathinfo($destination_image, PATHINFO_DIRNAME);
+         if (!is_dir($destination_dir) && !mkdir($destination_dir, 0755, true)) {
+             error_log("Failed to create directory: $destination_dir");
+             return false;
+         }
+
+         // Remove any existing file extension and append '.webp'
+         $destination_image = pathinfo($destination_image, PATHINFO_DIRNAME) . '/' . pathinfo($destination_image, PATHINFO_FILENAME) . '.webp';
+
+         // Convert the image to WebP format with specified quality
+         $success = imagewebp($image, $destination_image, 95);
+         imagedestroy($image);
+
+         if (!$success) {
+             error_log("Failed to convert image to WebP: $destination_image");
+             return false;
+         }
+
+         return $success;
      }
 
      protected function render_crop_window($filename, $field)
