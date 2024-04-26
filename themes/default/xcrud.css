@@ -1,0 +1,578 @@
+@import 'fonts.css';
+.xcrud{
+    margin-bottom: 20px;
+    font-family: Helvetica, Tahoma, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.xcrud-list{
+    min-width: 100%;
+    width: auto;
+    display: table !important;
+    margin: 0 0 3px;
+    border-spacing: 0;
+}
+.xcrud-list td{
+    padding: 8px 10px;
+    border-bottom: 1px solid #DADADA;
+    border-top: 1px solid transparent;
+    vertical-align: top;
+    background: #fff;
+}
+.xcrud-list td:first-child{
+    border-left: 1px solid transparent;
+}
+.xcrud-list td:last-child{
+    border-right: 1px solid transparent;
+}
+.xcrud-list .xcrud-row-1 td{
+    background: #f9f9f9;
+}
+.xcrud-list .xcrud-row:hover td{
+    background: #5742BF !important;
+    color: #fff;
+    border-top: 1px solid #5742BF;
+    border-bottom: 1px solid #5742BF;
+}
+.xcrud-list .xcrud-row:hover td a{
+    color: #B3E6FF;
+}
+.xcrud-list .xcrud-row:hover td .xcrud-button{
+    background: #eee;
+    color: #555;
+}
+.xcrud-button.xcrud-red:hover,.xcrud-list .xcrud-row:hover .xcrud-button.xcrud-red{
+    background: #BD3333;
+    color: #fff;
+}
+.xcrud-button.xcrud-blue:hover,.xcrud-list .xcrud-row:hover .xcrud-button.xcrud-blue{
+    background: #3F49A3;
+    color: #fff;
+}
+.xcrud-button.xcrud-cyan:hover,.xcrud-list .xcrud-row:hover .xcrud-button.xcrud-cyan{
+    background: #33AAAE;
+    color: #fff;
+}
+.xcrud-button.xcrud-orange:hover,.xcrud-list .xcrud-row:hover .xcrud-button.xcrud-orange{
+    background: #D67C33;
+    color: #fff;
+}
+.xcrud-button.xcrud-green:hover,.xcrud-list .xcrud-row:hover .xcrud-button.xcrud-green{
+    background: #43A856;
+    color: #fff;
+}
+.xcrud-button.xcrud-pink:hover,.xcrud-list .xcrud-row:hover .xcrud-button.xcrud-pink{
+    background: #C355A6;
+    color: #fff;
+}
+.xcrud-button.xcrud-black:hover,.xcrud-list .xcrud-row:hover .xcrud-button.xcrud-black{
+    background: #2C2C2C;
+    color: #fff;
+}
+.xcrud-button.xcrud-purple:hover,.xcrud-list .xcrud-row:hover .xcrud-button.xcrud-purple{
+    background: #6D348E;
+    color: #fff;
+}
+.xcrud-column.xcrud-action:hover{
+    cursor: pointer;
+    background: #aaa;
+    color: #fff;
+    /*box-shadow: 0 0 1px #000;*/
+}
+.xcrud-container{
+    position: relative;
+}
+.xcrud-list-container{
+    overflow-x: auto;
+    clear: both;
+    padding: 0 1px;
+}
+.xcrud-top-actions{
+    margin-bottom: 5px;
+}
+.xcrud-button, a.xcrud-button{
+    display: inline-block;
+    margin: 1px 1px 0 0;
+    height: 28px;
+    line-height: 28px;
+    background: #8D8D8D;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    padding: 0 10px;
+    cursor: pointer;
+    vertical-align: top;
+}
+.xcrud-button:hover{
+    background: #9D9D9D;
+}
+.xcrud .xcrud-button > i{
+    font-size: 80%;
+}
+.xcrud .xcrud-row .xcrud-button > i{
+    margin-right: 0;
+    margin-left: 0;
+    line-height: 26px;
+}
+.xcrud .xcrud-row .xcrud-button{
+    margin: -4px 1px;
+}
+.xcrud-tooltip{
+    text-decoration: none;
+    color: #3F78BD;
+}
+
+.xcrud-details-table{
+    width: 100%;
+    margin: 10px 0;
+    border-spacing: 0;
+}
+.xcrud-details-table td{
+    padding: 2px 5px;
+    background: #fff;
+}
+.xcrud-details-table td:first-child{
+    text-align: right;
+    width: 20%;
+    min-width: 100px;
+    border-right: 1px solid #fff;
+}
+.xcrud-details-table tr:nth-child(2n) td{
+    background: #f5f5f5;
+}
+
+.xcrud-nav{
+    padding: 15px 10px 5px;
+}
+.xcrud-nav:before{
+    display: block;
+    height: 1px;
+    clear: both;
+    content: "";
+}
+td.xcrud-actions{
+    text-align: right;
+    white-space:nowrap;
+}
+.xcrud-actions a{
+    vertical-align: top;
+}
+.xcrud .xcrud-list .xcrud-row:hover td.xcrud-actions-fixed{
+    position: absolute;
+    right: 0;
+    border-left: none;
+    margin-top: 0;
+}
+
+.xcrud-overlay{
+    /*display: none;*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #fff 50% 50% no-repeat url(loading.gif);
+    z-index: 5;
+    opacity: 0.5;
+    width: 100%;
+}
+.xcrud-num{
+    color: #bbb;
+    width: 10px;
+}
+.xcrud-pagination{
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+.xcrud-pagination > li{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+.xcrud-pagination li a,.xcrud-pagination li span{
+    display: inline-block;
+    vertical-align: top;
+    height: 28px;
+    line-height: 29px;
+    font-size: 13px;
+    padding: 0 10px;
+    min-width: 10px;
+    text-align: center;
+    margin: 1px 1px 0 0;
+}
+.xcrud-pagination li a{
+    text-decoration: none;
+    color: #222;
+    background: #ddd;
+}
+.xcrud-pagination li a:hover{
+    color: #fff;
+    background: #2C2C2C;
+}
+.xcrud-pagination li span{
+    color: #888;
+    background: #eee;
+}
+.xcrud-pagination li.active span{
+    background: #3F49A3;
+    color: #fff;
+}
+.xcrud-limit-buttons{
+    display: inline-block;
+    vertical-align: top;
+}
+.xcrud-button.active{
+    background: #3F49A3;
+    color: #fff;
+}
+.xcrud-benchmark{
+    margin: 0;
+    font-size: 10px;
+    line-height: 0.1;
+    color: #999;
+}
+.xcrud-benchmark span{
+    margin: 0 5px;
+}
+table.xcrud-details.table td input,table.xcrud-details.table td select,table.xcrud-details.table td textarea{
+    margin-bottom: 0;
+}
+
+.xcrud .xcrud-file-container.error{
+    border: 1px solid #E20101;
+    background-color: #FFE4E4;
+    padding-left: 5px;
+}
+.xcrud .xcrud-file-container{
+    font-size: 14px;
+    line-height: 30px;
+}
+.xcrud .xcrud-file-container img{
+    max-width: 99%;
+    vertical-align: bottom;
+}
+
+.xcrud-add-file{
+    position: relative;
+    overflow: hidden;
+}
+input.xcrud-upload{
+    cursor: pointer;
+    direction: ltr;
+    font-size: 100%;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-300px, 0px) scale(4);
+    -webkit-transform: translate(-300px, 0px) scale(4);
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+
+.xcrud .xcrud-list td.xcrud-sum{
+    font-weight: bold;
+}
+
+/* column styles */
+.xcrud-list td.align-left{
+    text-align: left
+}
+.xcrud-list td.align-right{
+    text-align: right;
+}
+.xcrud-list td.align-center{
+    text-align: center;
+}
+.xcrud-list td.font-bold{
+    font-weight: bold;
+}
+.xcrud-list td.font-italic{
+    font-style: italic;
+}
+.xcrud-list td.text-underline{
+    text-decoration: underline;
+}
+.xcrud .xcrud-list td .btn-small{
+    padding: 5px 7px 2px 10px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+}
+.xcrud .xcrud-list td .btn-small:first-child{
+    margin-left: -4px;
+}
+.xcrud .xcrud-list td .btn-small:last-child{
+    margin-right: -4px;
+}
+.xcrud-th th{
+    background: #E9E9E9;    
+    white-space: nowrap;
+    height: 35px;
+    font-weight: bold;
+    font-size: 12px;
+    border-bottom: 1px solid #DADADA;
+    color: #777;
+    border-right: 1px solid #F1F1F1;
+    vertical-align: middle;
+    padding: 2px 8px;
+}
+.xcrud-th th:last-child{
+    border-right: none;
+}
+
+.xcrud .xcrud-daterange{
+    width: 80px;
+}
+.xcrud-googlemap img{
+    max-width: inherit;
+}
+.xcrud-search{
+    margin-top: 1px;
+}
+.xcrud-search input,.xcrud-search select{
+    width: 10%;
+    margin: 0 5px 0 0;
+    vertical-align: top;
+    min-width: 120px;
+}
+.xcrud-search input, .xcrud-search select, .xcrud-search .buttona{
+    margin-bottom: 0;
+}
+.xcrud .btn{
+    margin-left: 1px;
+    margin-right: 1px;
+}
+.xcrud .btn:first-child{
+    margin-left: 0;
+}
+.xcrud .btn:last-child{
+    margin-right: 0;
+}
+.xcrud .btn .glyphicon{
+    /*vertical-align: middle;*/
+    margin: -1px 3px -1px 0;
+    display: inline-block;
+}
+.xcrud-upload-container img{
+    display: block;
+    max-width: 700px;
+    clear: both;
+}
+
+ul.xcrud-map-dropdown{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 1px 2px 2px rgba(0,0,0,0.3);
+    position: absolute;
+    z-index: 5;
+}
+ul.xcrud-map-dropdown li{
+    margin: 0;
+    padding: 3px 10px;
+    cursor: pointer;
+}
+ul.xcrud-map-dropdown li:hover{
+    background: #f4f4f4;
+}
+input.xcrud-inline{
+    display: inline-block;
+    width: 40%;
+    margin-right: 10px;
+}
+.xcrud-map{
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    margin: 10px 0;
+}
+
+
+/* messages */
+.xcrud-message{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    padding: 10px 20px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05),inset 0 1px 0 rgba(0,0,0,0.05);
+    display: none;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    color: #fff;
+    color: rgba(255,255,255,0.90);
+    cursor: pointer;
+    z-index: 500;
+}
+.xcrud-message.success{
+    background: #5AB95F;
+    border-top: 1px solid #8A1414;
+    border-bottom: 1px solid #8A1414;
+}
+.xcrud-message.error{
+    background: #D05C5C;
+    border-top: 1px solid #931C1C;
+    border-bottom: 1px solid #931C1C;
+}
+.xcrud-message.info{
+    background: #6CC3C6;
+    border-top: 1px solid #127B7C;
+    border-bottom: 1px solid #127B7C;
+}
+.xcrud-message.note{
+    background: #DDB75D;
+    border-top: 1px solid #A66E13;
+    border-bottom: 1px solid #A66E13;
+}
+
+/* forms */
+.xcrud input[type="text"],.xcrud input[type="password"]{
+    margin: 1px 1px 0 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    height: 26px;
+    line-height: 26px;
+    padding: 0;
+    text-indent: 5px;
+    font-size: 13px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #444;
+    vertical-align: top;
+    min-width: 50%;
+}
+.xcrud select{
+    margin: 1px 1px 0 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    height: 28px;
+    padding: 5px 3px;
+    font-size: 13px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #444;
+    vertical-align: top;
+    min-width: 50%;
+}
+.xcrud select[multiple]{
+    height: auto;
+}
+.xcrud select option{
+    padding: 2px 8px;
+    font-size: 13px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #444;
+    background: #fff;
+}
+.xcrud textarea{
+    padding: 0;
+    margin: 1px 1px 0 0;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    line-height: 18px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #444;
+    vertical-align: top;
+    min-width: 50%;
+    min-height: 60px;
+    text-indent: 5px;
+}
+.xcrud-radio-label,.xcrud-checkboxes-label{
+    display: block;
+}
+.xcrud-radio-label input,.xcrud-checkboxes-label input{
+    margin-right: 7px;
+}
+.xcrud input[readonly]{
+    color: #777;
+}
+.xcrud input[disabled]{
+    color: #777;
+    background: #eee;
+    cursor: not-allowed;
+}
+.xcrud input.xcrud-input-small,.xcrud select.xcrud-input-small{
+    width: 130px;
+    min-width: 130px;
+}
+.xcrud img{
+    border: 1px solid #fff;
+    padding: 0;
+    vertical-align: top;
+    max-width: 100%;
+}
+.xcrud-noimage,.xcrud-nofile,.xcrud-file-name{
+    display: inline-block;
+    margin: 1px 1px 0 0;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px;
+    background: #eee;
+    border: 1px solid #ccc;
+    color: #777;
+}
+.xcrud .xcrud-file-name .xcrud-file{
+    margin: 0 5px;
+    color: #548591;
+}
+.xcrud h2{
+    font-size: 24px;
+    color: #000;
+    padding: 0;
+    margin: 10px 0;
+    font-weight: normal;
+}
+.xcrud h2 small{
+    font-size: 16px;
+    color: #999;
+}
+.xcrud .validation-error{
+    box-shadow: 0 0 1px red, 0 0 3px red !important;
+    background: #FFEBEB !important;
+}
+th.xcrud-actions{
+    width: 40px;
+}
+a.xcrud_modal{
+    text-decoration: none;
+    color: inherit;
+}
+.xcrud-toggle-show{
+    float: right;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: inherit;
+    margin: 2px 8px;
+    cursor: pointer;
+}
+h2{
+    border-bottom: 1px solid #ddd;
+}
+.xcrud-main-tab{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 15px 6px;
+    margin: 0 2px;
+    font-size: 20px;
+}
+
+/* RTL */
+.xcrud.xcrud_rtl{
+    direction: rtl;
+}
+.xcrud.xcrud_rtl .xcrud-list .xcrud-row:hover td.xcrud-actions-fixed{
+    right: auto;
+    left: 0;
+}
+.xcrud.xcrud_rtl .xcrud-toggle-show{
+    float: left;
+}
+.xcrud.xcrud_rtl .xcrud-button > i{
+    margin-right: auto;
+    margin-left: 4px;
+}
+.xcrud.xcrud_rtl .xcrud-details-table td:first-child {
+    text-align: left;
+}

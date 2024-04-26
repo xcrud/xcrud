@@ -1,0 +1,211 @@
+@import 'fonts.css';
+
+/* main xcrud container */
+.xcrud{
+    margin-bottom: 20px;
+    font-family: Helvetica, Tahoma, sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+    color: #666699;
+    position: relative;
+}
+.xcrud-list-container{
+    overflow: auto;
+}
+/* grid table */
+.xcrud-list{
+    min-width: 100%;
+    width: auto;
+    display: table !important;
+    margin: 0 0 3px;
+    border-spacing: 0;
+}
+
+/* grid column header */
+.xcrud-list th{
+    border-bottom: 2px solid #6678B1;
+    color: #003399;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 8px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* grid column with action */ 
+.xcrud-list th.xcrud-action:hover{
+    cursor: pointer;
+    color: #000099;
+}
+
+/* grid cell */
+.xcrud-list td{
+    border-bottom: 1px solid #ccc;
+    color: #666699;
+    padding: 6px 8px;
+    vertical-align: top;
+}
+
+/* row hover */
+.xcrud-list tr:hover > td{
+    color: #000099;
+}
+ /* grid buttons column */
+.xcrud-actions{
+    text-align: right;
+}
+
+/* h2 table header */
+.xcrud h2,.xcrud-main-tab{
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: normal;
+    margin: 5px 0 0;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    color: #666699;
+}
+
+/* toggle button */
+.xcrud-toggle-show{
+    font-size: 12px;
+    margin-top: 5px;
+    float: right;
+    cursor: pointer;
+    color: #666699;
+}
+.xcrud-toggle-show:hover{
+    color: #000099;
+}
+/* minimized tab */
+.xcrud-main-tab{
+    background: #fafafa;
+}
+
+/* buttons */
+.xcrud-button{
+    font-size: 14px;
+    margin: 0 5px;
+    color: #666699;
+}
+a.xcrud-button{
+    text-decoration: underline;
+}
+.xcrud-button > i{
+    font-size: 12px;
+    margin-right: 3px;
+    text-decoration: none;
+}
+.xcrud-actions .xcrud-button{
+    text-decoration: none;
+}
+.xcrud-button:hover{
+    color: #000099;
+}
+
+/* inputs */
+.xcrud input[type="text"],.xcrud select{
+    margin-right: 3px;
+}
+.xcrud-input-small{
+    width: 70px;
+}
+ /* pagination */
+.xcrud-pagination{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    font-size: 14px;
+}
+.xcrud-pagination li{
+    list-style: none;
+    display: inline;
+    margin: 0 5px;
+}
+.xcrud-pagination li a{
+    color: #666699;
+}
+.xcrud-pagination li a:hover{
+    color: #000099;
+}
+/* benchmark */
+.xcrud-benchmark{
+    display: block;
+    text-align: right;
+}
+.xcrud-benchmark span{
+    font-size: 10px;
+    margin: 0 5px;
+    color: #bbb;
+    line-height: 1.1;
+}
+
+/* details image */
+.xcrud-upload-container img{
+    display: block;
+}
+ /* upload file name */
+.xcrud-file-name > a{
+    font-size: 14px;
+    margin-right: 5px;
+}
+ /* tooltips */
+.xcrud-tooltip{
+    text-decoration: none;
+    font-size: 80%;
+    color: #AD2424;
+}
+
+
+/* messages */
+.xcrud-message{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    padding: 10px 20px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05),inset 0 1px 0 rgba(0,0,0,0.05);
+    display: none;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    color: #fff;
+    color: rgba(255,255,255,0.90);
+    cursor: pointer;
+    z-index: 500;
+}
+.xcrud-message.success{
+    background: #5AB95F;
+    border-top: 1px solid #8A1414;
+    border-bottom: 1px solid #8A1414;
+}
+.xcrud-message.error{
+    background: #D05C5C;
+    border-top: 1px solid #931C1C;
+    border-bottom: 1px solid #931C1C;
+}
+.xcrud-message.info{
+    background: #6CC3C6;
+    border-top: 1px solid #127B7C;
+    border-bottom: 1px solid #127B7C;
+}
+.xcrud-message.note{
+    background: #DDB75D;
+    border-top: 1px solid #A66E13;
+    border-bottom: 1px solid #A66E13;
+}
+
+/* RTL */
+.xcrud.xcrud_rtl{
+    direction: rtl;
+}
+.xcrud.xcrud_rtl .xcrud-toggle-show{
+    float: left;
+}
+.xcrud.xcrud_rtl .xcrud-button > i{
+    margin-right: auto;
+    margin-left: 4px;
+}
+.xcrud.xcrud_rtl .xcrud-details-table td:first-child {
+    text-align: left;
+}
