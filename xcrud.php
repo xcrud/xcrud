@@ -8,14 +8,11 @@ ini_set('display_errors', 'On'); // error showing (debug)
 // direct access to DB driver and config
 
 define('XCRUD_PATH', str_replace('\\', '/', dirname(__file__))); // str_replace - windows trick
-// includo in xcrud i file di configurazione al database
-@include (BASEPATH . "lib/config.php");
 
 
 
 
 require (XCRUD_PATH . '/xcrud_config.php'); // configuration
-        // definisco il db         
 require (XCRUD_PATH . '/xcrud_db.php'); // database class
 mb_internal_encoding(Xcrud_config::$mbencoding); // sets multibyte encoding globaly
 date_default_timezone_set(@date_default_timezone_get()); // xcrud code not depends on timezone, but this can fix some warnings
